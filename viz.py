@@ -4,7 +4,7 @@ import numpy as np
 from dash import Dash, dcc, html, Input, Output,no_update
 import os
 
-data = pd.read_csv("worldometer_coronavirus_daily_data.csv")
+data = pd.read_csv("worldometer_coronavirus_daily_data.csv")#load covid statistics
 data
 
 data['date'] = pd.to_datetime(data['date'])
@@ -25,18 +25,13 @@ countries_to_remove = [
     'Faeroe Islands', 'San Marino', 'Liechtenstein', 'Grenada'
 ]#these are not shown on the dash map
 
+#normalize the data
 data = data[~data['country'].isin(countries_to_remove)]
 data['cases_per_million'] = (data['cumulative_total_cases'] / data['population']) * 1_000_000
 data['new_cases_per_million'] = (data['daily_new_cases'] / data['population']) * 1_000_000
 data['active_cases_per_million'] = (data['active_cases'] / data['population']) * 1_000_000
 data['deaths_per_million'] = (data['cumulative_total_deaths'] / data['population']) * 1_000_000
 data['new_deaths_per_million'] = (data['daily_new_deaths'] / data['population']) * 1_000_000
-
-
-
-
-
-
 
 app = Dash(__name__)
 
