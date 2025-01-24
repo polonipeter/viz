@@ -336,4 +336,4 @@ def update_charts(country1, country2, pie_country, selected_date_index):
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8050)) #render hosting sets up the port
-    app.run_server(port=port, debug=True)
+    app.run_server(host="0.0.0.0", port=port, debug=True)
