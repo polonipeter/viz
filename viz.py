@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 from dash import Dash, dcc, html, Input, Output,no_update
-
+import os
 
 data = pd.read_csv("worldometer_coronavirus_daily_data.csv")
 data
@@ -334,5 +334,6 @@ def update_charts(country1, country2, pie_country, selected_date_index):
 
     return fig1, fig2, fig3
 
-if __name__ == '__main__':
-    app.run_server(port=8050, debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8050)) #render hosting sets up the port
+    app.run_server(port=port, debug=True)
